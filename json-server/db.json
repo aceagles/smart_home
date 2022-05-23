@@ -1,3 +1,20 @@
 {
-    "house": {"data": "Happy Cats"}
+    "switches": [
+        {
+            "statusUrl": "http://localhost:3001/switch_1",
+            "name": "First One",
+            "toggleUrl": "http://"
+        },
+        {
+            "statusUrl": "http://localhost:3001/switch_2",
+            "name": "Other One",
+            "toggleUrl": "http://"
+        }
+    ],
+    "switch_1": {
+        "status": true
+    },
+    "switch_2": {
+        "status": true
+    }
 }

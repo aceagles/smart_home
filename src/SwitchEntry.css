@@ -1,3 +1,13 @@
 .link {
     cursor: pointer;
+    display: inline;
+}
+
+.switchBox {
+    border: 1px solid black;
+    border-radius: 3;
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    padding: 3px;
 }
