@@ -1,5 +1,6 @@
 import SwitchEntry from './SwitchEntry';
 import React, {useState, useEffect} from 'react'
+import './App.css'
 
 function App() {
    const [SwitchList, setSwitchList] = useState([])
@@ -13,10 +14,14 @@ function App() {
    
 
   return (
-    <div className="App">
-      {SwitchList && SwitchList.map(entry => 
-        <SwitchEntry key={entry.name} switchInfo={entry} />
-      )}
+    <div className='row'>
+      <div className="column equal">&nbsp; </div>
+      <div className="App column equal">
+        {SwitchList && SwitchList.map(entry =>
+          <SwitchEntry key={entry.name} switchInfo={entry} />
+        )}
+      </div>
+      <div className="column equal"> &nbsp;</div>
     </div>
   );
 }

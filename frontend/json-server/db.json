@@ -15,6 +15,5 @@
         "status": true
     },
     "switch_2": {
-        "status": true
-    }
+        "status": false    }
 }

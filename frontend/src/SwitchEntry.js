@@ -21,7 +21,8 @@ export default function SwitchEntry({key, switchInfo}) {
    
   return (
     <div className="switchBox">
-      {switchInfo.name} - <div className="link">{isOn ? "On" : "Off"}</div>
+      {switchInfo.name} - 
+      <img src="/power-svgrepo-com.svg" alt="" width="10%" className={"link" (isOn ? "on" : "")}></img>
     </div>
   )
 }
