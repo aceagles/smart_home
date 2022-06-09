@@ -9,5 +9,5 @@ class SmartSwitch(models.Model):
     name = models.CharField(max_length=50)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.brand_name)
+        self.slug = slugify(self.name)
         super(SmartSwitch, self).save(*args, **kwargs)
