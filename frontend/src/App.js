@@ -14,14 +14,14 @@ function App() {
    
 
   return (
-    <div className='row'>
-      <div className="column equal">&nbsp; </div>
-      <div className="App column equal">
-        {SwitchList && SwitchList.map(entry =>
-          <SwitchEntry key={entry.name} switchInfo={entry} />
-        )}
+    <div className='container'>
+      <div className="row justify-content-center">
+        <div className="col-lg-6">
+          {SwitchList && SwitchList.map(entry =>
+            <SwitchEntry key={entry.name} switchInfo={entry} />
+          )}
+        </div>
       </div>
-      <div className="column equal"> &nbsp;</div>
     </div>
   );
 }
