@@ -3,10 +3,14 @@ import './SwitchEntry.css'
 
 export default function SwitchEntry({switchInfo}) {
    const [isOn, setIsOn] = useState(false)
+   const [Connected, setConnected] = useState(false)
+
    const updateStatus = () => {
     fetch(switchInfo.statusUrl)
     .then(dat => dat.json())
-    .then(dat => {setIsOn(dat.status)})
+    //Set the data and set the connected flag
+    .then(dat => {setIsOn(dat.status); setConnected(true)})
+    .catch(() => setConnected(false))
    }
    
    // Mount and unmount functions
@@ -22,7 +26,10 @@ export default function SwitchEntry({switchInfo}) {
   return (
     <div className="switchBox">
       {switchInfo.name} - 
-      <img src="/power-svgrepo-com.svg" alt="" width="10%" className={(isOn ? "on" : "")}></img>
+      {(Connected ?
+      (<img src="/power-svgrepo-com.svg" alt="" width="10%" className={(isOn ? "on" : "")}></img>) :
+      ("Disconnected")
+      )}
     </div>
   )
 }
