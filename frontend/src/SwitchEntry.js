@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './SwitchEntry.css'
 
-export default function SwitchEntry({key, switchInfo}) {
+export default function SwitchEntry({switchInfo}) {
    const [isOn, setIsOn] = useState(false)
    const updateStatus = () => {
     fetch(switchInfo.statusUrl)
@@ -22,7 +22,7 @@ export default function SwitchEntry({key, switchInfo}) {
   return (
     <div className="switchBox">
       {switchInfo.name} - 
-      <img src="/power-svgrepo-com.svg" alt="" width="10%" className={"link" (isOn ? "on" : "")}></img>
+      <img src="/power-svgrepo-com.svg" alt="" width="10%" className={(isOn ? "on" : "")}></img>
     </div>
   )
 }

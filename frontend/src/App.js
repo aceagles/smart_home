@@ -7,7 +7,7 @@ function App() {
 
   //Fetch the list of switches
    useEffect(() => {
-     fetch("http://localhost:3001/switches/")
+     fetch("http://localhost:8000/switches/")
       .then(dat => dat.json())
       .then(dat => setSwitchList(dat))  
    }, [])
