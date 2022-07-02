@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
+    'mock_switch.apps.MockSwitchConfig',
     'rest_framework',
     'corsheaders',
 ]

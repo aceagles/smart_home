@@ -10,7 +10,7 @@ export default function SwitchEntry({switchInfo}) {
     .then(dat => dat.json())
     //Set the data and set the connected fl
     .then(dat => {setIsOn(dat.status); setConnected(true)})
-    //.catch(() => setConnected(false))
+    .catch(() => setConnected(false))
    }
    
    // Mount and unmount functions

@@ -24,6 +24,7 @@ router.register(r'switches', views.SwitchViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('mocks/', include('mock_switch.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
