@@ -1,11 +1,15 @@
-import SwitchEntry from './SwitchEntry';
+import Overview from './routes/overview'
 import React, {useEffect} from 'react'
 import './App.css'
-import { useSelector, useDispatch } from 'react-redux'
+import {useDispatch } from 'react-redux'
 import {setSwitches} from './store/switches/switchSlice'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
-  const SwitchList = useSelector(state => state.switches.switches)
   const dispatch = useDispatch()
 
   //Fetch the list of switches
@@ -17,15 +21,12 @@ function App() {
    
 
   return (
-    <div className='container'>
-      <div className="row justify-content-center">
-        <div className="col-lg-6">
-          {SwitchList && SwitchList.map(entry =>
-            <SwitchEntry key={entry.name} switchInfo={entry} />
-          )}
-        </div>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+          <Route path="/" element={<Overview />}/>
+          
+        </Routes>
+    </Router>
   );
 }
 
