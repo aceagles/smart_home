@@ -1,16 +1,19 @@
 import SwitchEntry from './SwitchEntry';
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import './App.css'
+import { useSelector, useDispatch } from 'react-redux'
+import {setSwitches} from './store/switches/switchSlice'
 
 function App() {
-   const [SwitchList, setSwitchList] = useState([])
+  const SwitchList = useSelector(state => state.switches.switches)
+  const dispatch = useDispatch()
 
   //Fetch the list of switches
    useEffect(() => {
      fetch("http://localhost:8000/switches/")
       .then(dat => dat.json())
-      .then(dat => setSwitchList(dat))  
-   }, [])
+      .then(dat => dispatch(setSwitches(dat)))  
+   })
    
 
   return (

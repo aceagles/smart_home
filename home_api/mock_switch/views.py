@@ -8,7 +8,7 @@ def get_status(request, slug=None):
             mock_switch = MockSwitch.objects.get(slug=slug)
         except MockSwitch.DoesNotExist:
             return HttpResponseNotFound()
-        return JsonResponse(mock_switch.status, safe=False)
+        return JsonResponse({"status":mock_switch.status}, safe=False)
     return HttpResponseNotFound()
 
 def toggle_status(request, slug=None):
@@ -19,5 +19,5 @@ def toggle_status(request, slug=None):
             return HttpResponseNotFound()
         mock_switch.status = not mock_switch.status
         mock_switch.save()
-        return JsonResponse(mock_switch.status, safe=False)
+        return JsonResponse({"status":mock_switch.status}, safe=False)
     return HttpResponseNotFound()
