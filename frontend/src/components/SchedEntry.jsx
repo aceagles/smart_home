@@ -11,15 +11,17 @@ export default function SchedEntry({sched}){
 
 
     return (
-        <div className="d-flex">
-            {sched.time} | {sched.action} | 
-            <button className="btn btn-info mx-2">
-                Edit
-            </button>
-            <button className="btn btn-danger" onClick={deleteEntry}>
-                Delete
-            </button>
-
+        <div>
+            <div className="d-flex">
+                {sched.time} | {sched.action} |
+                <button className="btn btn-info m-2">
+                    Edit
+                </button>
+                <button className="btn btn-danger m-2" onClick={deleteEntry}>
+                    Delete
+                </button>
+            </div>
+            <hr />
         </div>
     )
 
