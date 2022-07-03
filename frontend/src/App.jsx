@@ -1,9 +1,12 @@
-import Overview from './routes/overview'
-import Detail from './routes/Detail'
 import React, {useEffect} from 'react'
 import './App.css'
 import {useDispatch } from 'react-redux'
 import {setSwitches} from './store/switches/switchSlice'
+import Overview from './routes/overview'
+import Detail from './routes/Detail'
+
+
+
 import {
   BrowserRouter as Router,
   Routes,

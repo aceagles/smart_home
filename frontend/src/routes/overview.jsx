@@ -3,7 +3,7 @@ import SwitchEntry from '../components/SwitchEntry';
 
 export default function Overview(){
     const SwitchList = useSelector(state => state.switches.switches)
-
+    console.log(SwitchList)
     return (
         <div className='container'>
           <div className="row justify-content-center">
