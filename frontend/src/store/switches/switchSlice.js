@@ -8,7 +8,7 @@ const switchesSlice = createSlice({
     reducers: {
         setSwitches: (state, action) => {
             state.switches = action.payload
-        }
+        },
     }
 })
 

@@ -18,7 +18,7 @@ function App() {
 
   //Fetch the list of switches
    useEffect(() => {
-     fetch("http://localhost:8000/switches/")
+     fetch("/switches/")
       .then(dat => dat.json())
       .then(dat => dispatch(setSwitches(dat)))  
    })
