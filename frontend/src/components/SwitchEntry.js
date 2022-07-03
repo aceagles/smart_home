@@ -27,7 +27,13 @@ export default function SwitchEntry({switchInfo}) {
   return (
     <div className="card m-2">
       <div className="card-body row align-items-center">
-        <div className="col-10 align-middle ">{switchInfo.name} - </div>
+      <div className="col-10 align-middle ">
+        <a href={"/switch/"+switchInfo.slug}>
+          <h1 className="display-4">
+          {switchInfo.name}
+          </h1>
+        </a>
+        </div>
         <div className="col-2">
           {(Connected ?
           (<img src="/power-svgrepo-com.svg" 

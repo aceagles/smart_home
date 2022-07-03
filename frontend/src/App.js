@@ -1,4 +1,5 @@
 import Overview from './routes/overview'
+import Detail from './routes/Detail'
 import React, {useEffect} from 'react'
 import './App.css'
 import {useDispatch } from 'react-redux'
@@ -24,7 +25,7 @@ function App() {
     <Router>
       <Routes>
           <Route path="/" element={<Overview />}/>
-          
+          <Route path="/switch/:slug" element={<Detail />} />
         </Routes>
     </Router>
   );
