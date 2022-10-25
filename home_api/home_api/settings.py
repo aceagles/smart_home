@@ -142,3 +142,7 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 authentication_classes = []
+
+USE_TZ = True
+
+TIME_ZONE="Europe/London"

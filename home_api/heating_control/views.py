@@ -56,8 +56,10 @@ def update_usage(request):
         new_usage.save()
     
         # Get all incomplete tasks in the past
+        print(timezone.now())
         events = ScheduledEvent.objects.filter(completed=False, start_time__lte=timezone.now()).order_by('start_time')
         events = [event for event in events]
+        print(events)
         toggle = False
         if events:
             # Get the latest event
