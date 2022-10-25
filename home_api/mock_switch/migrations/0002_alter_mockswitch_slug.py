@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mock_switch', '0001_initial'),
+        ("mock_switch", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mockswitch',
-            name='slug',
+            model_name="mockswitch",
+            name="slug",
             field=models.SlugField(blank=True),
         ),
     ]

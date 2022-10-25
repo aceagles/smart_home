@@ -16,13 +16,17 @@ class SmartSwitch(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
+
 
 class ScheduleEvent(models.Model):
     class Actions(models.TextChoices):
         ON = "ON", "On"
         OFF = "OFF", "Off"
         TOG = "TOG", "Toggle"
+
     time = models.TimeField()
     action = models.CharField(choices=Actions.choices, max_length=6)
-    switch = models.ForeignKey(SmartSwitch, on_delete=models.CASCADE, related_name="events")
+    switch = models.ForeignKey(
+        SmartSwitch, on_delete=models.CASCADE, related_name="events"
+    )

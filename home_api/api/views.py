@@ -10,19 +10,21 @@ from rest_framework.renderers import JSONRenderer
 class SwitchViewSet(viewsets.ModelViewSet):
     queryset = SmartSwitch.objects.all()
     serializer_class = SwitchSerializer
-    lookup_field = 'slug'
+    lookup_field = "slug"
+
 
 class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = ScheduleEvent.objects.all()
     serializer_class = ScheduleSerializer
-    lookup_field = 'pk'
+    lookup_field = "pk"
 
     def destroy(self, request, *args, **kwargs):
         sched = self.get_object()
         sched.delete()
 
         return HttpResponse(
-            JSONRenderer().render( 
-                SwitchSerializer(SmartSwitch.objects.all(), many=True).data), 
-                content_type="application/json"
-                )
+            JSONRenderer().render(
+                SwitchSerializer(SmartSwitch.objects.all(), many=True).data
+            ),
+            content_type="application/json",
+        )

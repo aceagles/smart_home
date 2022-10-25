@@ -7,17 +7,38 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0002_alter_smartswitch_options'),
+        ("api", "0002_alter_smartswitch_options"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ScheduleEvent',
+            name="ScheduleEvent",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('time', models.TimeField()),
-                ('action', models.CharField(choices=[('ON', 'On'), ('OFF', 'Off'), ('TOG', 'Toggle')], max_length=6)),
-                ('switch', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='events', to='api.smartswitch')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("time", models.TimeField()),
+                (
+                    "action",
+                    models.CharField(
+                        choices=[("ON", "On"), ("OFF", "Off"), ("TOG", "Toggle")],
+                        max_length=6,
+                    ),
+                ),
+                (
+                    "switch",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="events",
+                        to="api.smartswitch",
+                    ),
+                ),
             ],
         ),
     ]

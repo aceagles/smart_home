@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Control Form{% endblock title %}
+
+{% block content %}
+    <h1>Heating Control</h1>
+
+    Heating is currently <br>
+    {{ latest_status|yesno:'On,Off,Unknown'}}
+    <br>
+    <a href="{% url 'toggle_button' %}"> Toggle </a>
+
+<br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" >Submit</button>
+    </form>        
+    
+    {% for event in scheduled_events %}
+        {{event.pk}} {{event.start_time}} - {{event.command}} <br>
+    {% endfor %}
+{% endblock content %}

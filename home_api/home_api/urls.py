@@ -17,12 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-
-
-
 urlpatterns = [
-    path('', include("api.urls")),
-    path('mocks/', include('mock_switch.urls')),
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path("", include("api.urls")),
+    path("mocks/", include("mock_switch.urls")),
+    path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("heating/", include("heating_control.urls")),
 ]

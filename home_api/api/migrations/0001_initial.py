@@ -7,18 +7,25 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='SmartSwitch',
+            name="SmartSwitch",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status_url', models.URLField()),
-                ('toggle_url', models.URLField()),
-                ('slug', models.SlugField()),
-                ('name', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("status_url", models.URLField()),
+                ("toggle_url", models.URLField()),
+                ("slug", models.SlugField()),
+                ("name", models.CharField(max_length=50)),
             ],
         ),
     ]
