@@ -4,3 +4,23 @@ content-type: application/json
 {
     "is_on": true
 }
+
+###
+
+POST http://localhost:8000/heating/check HTTP/1.1
+content-type: application/json
+Authorization: Token 21480d5b927d0d3dd6af66d3d78a648d7f57648c
+
+{
+    "is_on": true
+}
+
+###
+
+POST http://localhost:8000/heating/check HTTP/1.1
+content-type: application/json
+#Authorization: Token 21480d5b927d0d3dd6af66d3d78a648d7f57648c
+
+{
+    "is_on": true
+}
