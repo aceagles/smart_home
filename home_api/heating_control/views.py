@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 import json
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 # Create your views here.
 def toggle_form(request):
@@ -51,6 +51,7 @@ def toggle_btn(request):
 def update_usage(request):
     if request.method == 'POST':
         #Store the new usage
+        print(request.body)
         data = json.loads(request.body)
         new_usage = Usage(is_on= data['is_on'])
         new_usage.save()
@@ -82,7 +83,7 @@ def update_usage(request):
                 # toggle if command doesn't match status
                 toggle = on_cmd != new_usage.is_on
 
-        return JsonResponse({"toggle": toggle})
+        return HttpResponse(1 if toggle else 0)
 
 
     
