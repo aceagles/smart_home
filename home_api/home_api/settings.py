@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "api.apps.ApiConfig",
     "mock_switch.apps.MockSwitchConfig",
     "heating_control.apps.HeatingControlConfig",
+    'rest_framework.authtoken', 
     "rest_framework",
     "corsheaders",
 ]
@@ -146,3 +147,9 @@ authentication_classes = []
 USE_TZ = True
 
 TIME_ZONE="Europe/London"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+}
