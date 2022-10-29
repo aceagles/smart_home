@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - static_volume:/app/static
+    expose:
+      - "8000"
+    networks:
+      - django-network
+  nginx:
+    build: nginx
+    restart: always
+    volumes:
+      - static_volume:/app/static
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - django-network
+networks:
+  django-network:
+    name: django-network
+volumes:
+  static_volume:
