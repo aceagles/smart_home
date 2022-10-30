@@ -24,18 +24,7 @@ services:
       - django-network
     depends_on:
       - db
-  nginx:
-    build: nginx
-    image: adamcolineagles/home_projs:heating_ctl_nginx
-    restart: always
-    volumes:
-      - static_volume:/app/static
-    ports:
-      - "80:80"
-    depends_on:
-      - web
-    networks:
-      - django-network
+
 
 networks:
   django-network:
