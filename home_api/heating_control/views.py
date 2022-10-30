@@ -3,13 +3,10 @@ from heating_control.forms import ScheduleForm
 from heating_control.models import Usage
 from heating_control.models import ScheduledEvent, Usage
 from django.shortcuts import redirect
-import json
-from django.utils import timezone
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
-from rest_framework.decorators import api_view
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def toggle_form(request):
 
     # Save the new event if one has been posted
@@ -42,7 +39,7 @@ def toggle_form(request):
         },
     )
 
-
+@login_required
 def toggle_btn(request):
     event = ScheduledEvent()
     event.save()

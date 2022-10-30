@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LoginView, LogoutView
+
 
 
 urlpatterns = [
-    path("", include("api.urls")),
-    path("mocks/", include("mock_switch.urls")),
+    #path("", include("api.urls")),
+    #path("mocks/", include("mock_switch.urls")),
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path("heating/", include("heating_control.urls")),
+    path("", include("heating_control.urls")),
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+
 ]

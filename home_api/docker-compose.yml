@@ -1,16 +1,32 @@
 version: '3.8'
 services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=heating_control
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=##aasdhgwbe 
+    networks:
+        - django-network
   web:
     build:
       context: .
+    image: adamcolineagles/home_projs:heating_ctl_django
     volumes:
       - static_volume:/app/static
-    expose:
-      - "8000"
+    environment:
+      - POSTGRES_DB=heating_control
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=##aasdhgwbe
     networks:
       - django-network
+    depends_on:
+      - db
   nginx:
     build: nginx
+    image: adamcolineagles/home_projs:heating_ctl_nginx
     restart: always
     volumes:
       - static_volume:/app/static
@@ -20,6 +36,7 @@ services:
       - web
     networks:
       - django-network
+
 networks:
   django-network:
     name: django-network
