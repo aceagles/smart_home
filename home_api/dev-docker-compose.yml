@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=heating_control
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=##aasdhgwbe 
+    networks:
+        - django-network
+  web:
+    build:
+      context: .
+      dockerfile: dev-Dockerfile
+    image: adamcolineagles/home_projs:heating_ctl_django
+    volumes:
+      - static_volume:/app/static
+      - .:/app
+    environment:
+      - POSTGRES_DB=heating_control
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=##aasdhgwbe
+    networks:
+      - django-network
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+      - 8888:8888
+
+
+networks:
+  django-network:
+    name: django-network
+volumes:
+  static_volume:
