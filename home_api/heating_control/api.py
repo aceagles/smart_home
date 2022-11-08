@@ -20,7 +20,7 @@ class ControllerView(APIView):
         
             # Get all incomplete tasks in the past
             print(timezone.now())
-            events = ScheduledEvent.objects.filter(completed=False, start_time__lte=timezone.now()).order_by('start_time')
+            events = ScheduledEvent.objects.filter(completed=False, start_time__lte=timezone.now(), deleted=False).order_by('start_time')
             events = [event for event in events]
             print(events)
             toggle = False
@@ -30,11 +30,11 @@ class ControllerView(APIView):
 
                 #Delet the rest
                 for event in events:
-                    event.delete()
+                    event.del_sched()
                 
                 #Latest Event has been completed
                 latest_event.completed = True
-                latest_event.save()
+                latest_event.del_sched()
 
                 #Evaluate if a toggle is required
                 if latest_event.command == ScheduledEvent.TOG:

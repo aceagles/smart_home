@@ -8,7 +8,7 @@ from datetime import datetime
 class ScheduleForm(ModelForm):
     class Meta:
         model = ScheduledEvent
-        fields = ["command", "start_time"]
+        fields = ["command", "start_time", "repeat"]
 
     start_time = forms.CharField(
         widget=forms.TextInput(attrs={"type": "datetime-local"}), initial=datetime.now

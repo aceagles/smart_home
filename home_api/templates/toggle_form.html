@@ -17,8 +17,26 @@
         {{ form }}
         <button type="submit" >Submit</button>
     </form>        
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Time</th>
+            <th>Command</th>
+            <th>Repeats</th>
+        </tr>
+        {% for event in scheduled_events %}
+            <tr>
+                <td>{{event.pk}}</td>
+                <td>{{event.start_time}}</td>
+                <td>{{event.command}}</td>
+                <td>{{event.repeat}}</td>
+            </tr>
+        {% endfor %}
+    </table>
     
-    {% for event in scheduled_events %}
-        {{event.pk}} {{event.start_time}} - {{event.command}} <br>
-    {% endfor %}
+    <style>
+        th, td {
+            padding: 5px;
+          }
+    </style>
 {% endblock content %}

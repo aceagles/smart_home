@@ -1,6 +1,7 @@
 from email.policy import default
 from django.db import models
 from django.utils import timezone
+from datetime import timedelta
 
 # Create your models here.
 class Usage(models.Model):
@@ -14,6 +15,12 @@ class ScheduledEvent(models.Model):
 
     start_time = models.DateTimeField(auto_now_add=False, default=timezone.now)
     completed = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False)
+    DAILY = "DAILY"
+    WEEKLY = "WEEKLY"
+    NONE = "None"
+    repeat_choices = ((DAILY, "Daily"), (WEEKLY, "Weekly"), (NONE, "None"))
+    repeat = models.CharField(max_length=6, choices = repeat_choices, default=NONE)
 
     ON = "ON"
     OFF = "OFF"
@@ -23,3 +30,23 @@ class ScheduledEvent(models.Model):
 
     def __str__(self):
         return f"{self.command} - {self.start_time}"
+
+    def del_sched(self):
+        '''
+        Deletes a scheduled event from being acted upon but not from the db.
+
+        sets deleted to true and reschedules the new one if repeat is not none.
+        '''
+        self.deleted = True
+        self.save()
+        print(self.repeat)
+        if self.repeat == "DAILY" or self.repeat == "WEEKLY":
+            
+            self.pk = None
+            self.deleted = False
+            self.completed = False
+            if self.repeat == "DAILY":
+                self.start_time += timedelta(days=1)
+            else: 
+                self.start_time += timedelta(weeks=1)
+            self.save()
