@@ -23,6 +23,7 @@
             <th>Time</th>
             <th>Command</th>
             <th>Repeats</th>
+            <th></th>
         </tr>
         {% for event in scheduled_events %}
             <tr>
@@ -30,9 +31,17 @@
                 <td>{{event.start_time}}</td>
                 <td>{{event.command}}</td>
                 <td>{{event.repeat}}</td>
+                <td><a href="{% url 'delete_event' pk=event.pk %}">Delete</a></td>
             </tr>
         {% endfor %}
     </table>
+
+    <br>
+    Usage today: {{ usage_history.today}}
+    <br>
+    Usage last 7 days: {{ usage_history.7days}}
+    <br>
+    Average per day: {{ usage_history.7dayAvg}}
     
     <style>
         th, td {

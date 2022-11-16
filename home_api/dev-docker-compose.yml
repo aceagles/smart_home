@@ -8,8 +8,11 @@ services:
       - POSTGRES_DB=heating_control
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=##aasdhgwbe 
+      - DB_HOST=db
     networks:
         - django-network
+    ports:
+      - 5432:5432
   web:
     build:
       context: .

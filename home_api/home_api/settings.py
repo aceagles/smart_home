@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-*pt3n0(_#r_&8kwgs($0*0zs_0hr=w-!lll6yll)v*xa!8u8fo"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv("DEBUG", 'True').lower() in ('true', '1', 't')
 
 ALLOWED_HOSTS = ['localhost', '77.68.90.141', 'heating.aceagles.co.uk', '*']
 
@@ -88,9 +88,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'db',
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', '##aasdhgwbe'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
         'PORT': '5432',
     }
 }
@@ -166,7 +166,7 @@ REST_FRAMEWORK = {
 
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/heating/'
+LOGIN_REDIRECT_URL = '/'
 
 NOTEBOOK_ARGUMENTS = [
     '--ip', '0.0.0.0',

@@ -7,7 +7,7 @@ services:
     environment:
       - POSTGRES_DB=heating_control
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=##aasdhgwbe 
+      - POSTGRES_PASSWORD=##aasdhgwbe
     networks:
         - django-network
   web:
@@ -20,10 +20,14 @@ services:
       - POSTGRES_DB=heating_control
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=##aasdhgwbe
+      - DEBUG=False
+      - DB_HOST=db
     networks:
       - django-network
     depends_on:
       - db
+    ports:
+     - 80:8080
 
 
 networks:
