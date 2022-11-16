@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', 
     "rest_framework",
     "corsheaders",
+    'crispy_forms',
     "django_extensions"
+
 ]
 
 MIDDLEWARE = [
@@ -132,6 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
+
 STATIC_ROOT= os.path.join(BASE_DIR,'static/')
 
 
@@ -173,3 +176,5 @@ NOTEBOOK_ARGUMENTS = [
     '--port', '8888',
     '--allow-root'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

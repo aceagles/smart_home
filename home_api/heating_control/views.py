@@ -70,6 +70,7 @@ def toggle_btn(request):
 @login_required
 def del_event(request, pk):
     obj = ScheduledEvent.objects.get(pk=pk)
+    obj.repeat = "None"
     obj.del_sched()
     return redirect(toggle_form)
 

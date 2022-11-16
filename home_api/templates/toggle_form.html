@@ -4,45 +4,58 @@
 {% block title %}Control Form{% endblock title %}
 
 {% block content %}
-    <h1>Heating Control</h1>
+  
+<div class="container-lg text-center">
+    <h1 class="display-1">Heating Control</h1>
+        <div class="bg-light border-rounded text-center p-1 col-lg-8 offset-lg-2">
+            Heating is currently <br>
+            <h3>{{ latest_status|yesno:'On,Off,Unknown'}}</h3>
+        </div>
+        <div class=" my-2">
 
-    Heating is currently <br>
-    {{ latest_status|yesno:'On,Off,Unknown'}}
-    <br>
-    <a href="{% url 'toggle_button' %}"> Toggle </a>
 
-<br>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" >Submit</button>
-    </form>        
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Time</th>
-            <th>Command</th>
-            <th>Repeats</th>
-            <th></th>
-        </tr>
-        {% for event in scheduled_events %}
-            <tr>
-                <td>{{event.pk}}</td>
-                <td>{{event.start_time}}</td>
-                <td>{{event.command}}</td>
-                <td>{{event.repeat}}</td>
-                <td><a href="{% url 'delete_event' pk=event.pk %}">Delete</a></td>
-            </tr>
-        {% endfor %}
-    </table>
-
-    <br>
-    Usage today: {{ usage_history.today}}
-    <br>
-    Usage last 7 days: {{ usage_history.7days}}
-    <br>
-    Average per day: {{ usage_history.7dayAvg}}
+        <a href="{% url 'toggle_button' %}"> <input type="button" value="Toggle" class="btn btn-primary"> </a>
+        </div>
     
+    {% load crispy_forms_tags %}  
+        <div class="col-lg-4 bg-light p-4 rounded offset-lg-4">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <br>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+        {% if scheduled_events %}
+        <div class="col-lg-8 offset-lg-2 my-1">
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Command</th>
+                    <th scope="col">Repeats</th>
+                    <th scope="col"></th>
+                </tr>
+                {% for event in scheduled_events %}
+                    <tr>
+                        <td>{{event.pk}}</td>
+                        <td>{{event.start_time}}</td>
+                        <td>{{event.command}}</td>
+                        <td>{{event.repeat}}</td>
+                        <td><a href="{% url 'delete_event' pk=event.pk %}"><input type="button" value="x" class="btn btn-danger px-1 py-0"></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+     {% endif %}
+        
+        Usage today: {{ usage_history.today}}
+        <br>
+        Usage last 7 days: {{ usage_history.7days}}
+        <br>
+        Average per day: {{ usage_history.7dayAvg}}
+    
+</div>
     <style>
         th, td {
             padding: 5px;

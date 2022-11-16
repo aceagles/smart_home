@@ -1,3 +1,4 @@
 # Ignore db files
 *.sqlite3
 data/
+static/
