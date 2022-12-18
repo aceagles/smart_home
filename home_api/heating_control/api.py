@@ -2,7 +2,7 @@ from rest_framework.authentication import TokenAuthentication, BasicAuthenticati
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import ScheduledEvent, Usage
+from .models import ScheduledEvent, Usage, AggUsage
 from django.utils import timezone
 import json
 
@@ -15,9 +15,22 @@ class ControllerView(APIView):
             #Store the new usage
             print(request.body)
             data = json.loads(request.body)
-            new_usage = Usage(is_on= data['is_on'])
-            new_usage.save()
-        
+
+            # Check for an open usage. If open and currently off then close
+            try:
+                open_agg_usage = AggUsage.objects.filter(completed = False).get()
+            except AggUsage.DoesNotExist:
+                open_agg_usage = None
+            if open_agg_usage and not data['is_on']:
+                    open_agg_usage.completed = True
+                    open_agg_usage.end_time = timezone.now()
+                    open_agg_usage.save()
+            elif not open_agg_usage and data['is_on']:
+                    new_agg = AggUsage()
+                    new_agg.start_time = timezone.now()
+                    new_agg.save()
+                
+
             # Get all incomplete tasks in the past
             print(timezone.now())
             events = ScheduledEvent.objects.filter(completed=False, start_time__lte=timezone.now(), deleted=False).order_by('start_time')

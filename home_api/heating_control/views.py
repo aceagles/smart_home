@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from heating_control.forms import ScheduleForm
 from heating_control.models import Usage
-from heating_control.models import ScheduledEvent, Usage
+from heating_control.models import ScheduledEvent, Usage, AggUsage
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -11,10 +11,11 @@ from datetime import timedelta
 def total_usage(delta):
     now = timezone.now()
     pre_time = now - delta
-    usages = Usage.objects.filter(date__gte = pre_time, is_on = True)
+    usages = AggUsage.objects.filter(start_time__gte = pre_time)
     secs = 0
     for use in usages:
-        secs += 5
+        delta = use.end_time - use.start_time
+        secs += delta.total_seconds()
     return timedelta(seconds=secs)
 
 

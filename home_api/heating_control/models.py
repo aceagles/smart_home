@@ -10,7 +10,20 @@ class Usage(models.Model):
     def __str__(self):
         return f"{self.date} - {'On' if self.is_on else 'Off' }"
 
+class AggUsage(models.Model):
+    start_time = models.DateTimeField(null=True)
+    end_time = models.DateTimeField(null=True)
+    completed = models.BooleanField(default=False)
+    class Meta:
+        
 
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.start_time = timezone.now()
+
+    def __str__(self):
+        return f"{self.start_time} til {self.end_time}"
+    
 class ScheduledEvent(models.Model):
 
     start_time = models.DateTimeField(auto_now_add=False, default=timezone.now)

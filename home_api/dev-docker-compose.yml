@@ -25,6 +25,7 @@ services:
       - POSTGRES_DB=heating_control
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=##aasdhgwbe
+      - DB_HOST=db
     networks:
       - django-network
     depends_on:
