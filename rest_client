@@ -22,5 +22,5 @@ content-type: application/json
 Authorization: Token 7c8f98fa398530449d4a2a562a8283dddc789d43
 
 {
-    "is_on": true
+    "is_on": false
 }
